@@ -1,3 +1,4 @@
+const { VerifyTokenAndSetUser } = require("../http/middlewares/VerifyAccessToken");
 const { AdminRouter } = require("./admin/admin.routes");
 const { AuthRouter } = require("./auth/auth.routes");
 const { TransactionRouter } = require("./transactions/transactions.routes");
@@ -11,8 +12,8 @@ MainRouter.get("/", (req, res, next) => {
 })
 
 MainRouter.use("/auth", AuthRouter)
-MainRouter.use("/user", UserRouter)
-MainRouter.use("/transactions", TransactionRouter)
+MainRouter.use("/user", VerifyTokenAndSetUser, UserRouter)
+MainRouter.use("/transactions", VerifyTokenAndSetUser, TransactionRouter)
 MainRouter.use("/admin", AdminRouter)
 
 module.exports = {
