@@ -4,6 +4,25 @@
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
     "http-errors": "^2.0.0",
-    "mongoose": "^6.6.0"
-  }
+    "mongoose": "^6.6.0",
+    "morgan": "^1.10.0"
+  },
+  "name": "currencyapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevNima-PG/CurrencyApi---Mock.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevNima-PG/CurrencyApi---Mock/issues"
+  },
+  "homepage": "https://github.com/DevNima-PG/CurrencyApi---Mock#readme",
+  "description": ""
 }

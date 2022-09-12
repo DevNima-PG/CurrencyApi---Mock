@@ -4,3 +4,4 @@ public
 .env.local
 constants.js
 configs
+.vscode

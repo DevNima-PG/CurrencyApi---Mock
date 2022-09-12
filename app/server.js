@@ -1,9 +1,8 @@
 const express = require('express');
 const { default: mongoose } = require("mongoose");
 const morgan = require('morgan');
-require("dotenv").config()
 const path = require('path');
-const Router = require("./routes/router");
+const { MainRouter } = require("./routes/router");
 const createError = require("http-errors");
 
 module.exports = class Application {
@@ -30,7 +29,7 @@ module.exports = class Application {
     CreateServer() {
         const http = require('http');
         http.createServer(this.#app).listen(this.#PORT, () => {
-            console.log('server listening on port >' + this.#PORT);
+            console.log('server listening on port >> ' + this.#PORT);
         });
     }
 
@@ -43,7 +42,7 @@ module.exports = class Application {
             console.log("Connected to MongoDb");
         })
         mongoose.connection.on("disconnect", () => {
-            console.log("MOngoDb is disconnected");
+            console.log("MongoDb is disconnected");
         })
         process.on("SIGINT", async () => {
             await mongoose.connection.close();
@@ -56,7 +55,7 @@ module.exports = class Application {
     }
 
     CreateRoutes() {
-        this.#app.use(Router);
+        this.#app.use(MainRouter);
     }
 
     HandleErrors() {
