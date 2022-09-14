@@ -12,9 +12,11 @@ const GetTokenFromHeaders = async (headers) => {
 async function VerifyTokenAndSetUser(req, res, next) {
     try {
         const token = await GetTokenFromHeaders(req.headers).then(token => token);
-        jwt.verify(token, JWT_ACCESTOKEN_SECRET, async (err, payload) => {
+        console.log(token)
+        jwt.verify(token, process.env.JWT_ACCESTOKEN_SECRET, async (err, payload) => {
             try {
                 if (err) throw createHttpError.Unauthorized("Login to your account! 🐢");
+                console.log(err)
                 const { username } = payload || {};
                 const user = await UserModel.findOne(
                     { username },

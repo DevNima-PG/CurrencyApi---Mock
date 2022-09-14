@@ -5,8 +5,8 @@ const { signupValidator, LoginValidator } = require("../../http/validators/auth/
 
 const authRouter = require("express").Router();
 
-authRouter.get("/signup", signupValidator(), ValidationErrorMapper, AuthController.signup);
-authRouter.get("/login", LoginValidator(), ValidationErrorMapper, VerifyTokenAndSetUser, AuthController.Login);
+authRouter.post("/signup", signupValidator(), ValidationErrorMapper, AuthController.signup);
+authRouter.post("/login", LoginValidator(), ValidationErrorMapper, AuthController.Login);
 authRouter.get("/forgotPassword")
 
 module.exports = {
