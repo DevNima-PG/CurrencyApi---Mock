@@ -35,15 +35,18 @@ class AuthController extends ControllerBase {
     async Login(req, res, next) {
         try {
             const { username, password } = req.body; // Receiving Info from request
+            
             // Finding by Username
             const user = await UserModel.findOne({ username });
             if (!user) throw createHttpError.NotFound("Username or password is Incorrect")
             if (!CompareDataWithHash(password, user.password)) throw createHttpError.Unauthorized("Username or password is incorrect")
+            
             // Token Saving
             const token = SignToken(user);
             user.token = token;
             await user.save();
     
+            // Sending response to user            
             return res.status(200).json({
                 status: 200,
                 success: true,
