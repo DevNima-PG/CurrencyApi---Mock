@@ -49,8 +49,8 @@ class ProfileController extends ControllerBase {
 
     async FindUser(username) {
         const user = UserModel.findOne({ username });
-        if (!user) throw createHttpError.NotFound("Can't find that user")
-        return user;
+        if (user) throw createHttpError.NotFound("Username Already Exists")
+        return
     }
 }
 
